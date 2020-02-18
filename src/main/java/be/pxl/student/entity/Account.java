@@ -1,6 +1,7 @@
 package be.pxl.student.entity;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Account {
 
@@ -30,5 +31,13 @@ public class Account {
 
     public void setPayments(List<Payment> payments) {
         this.payments = payments;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "IBAN='" + IBAN + '\'' +
+                ", name='" + name + '\'' +
+                ", payments=[" + payments.stream().map(Payment::toString).collect(Collectors.joining(",")) + "]}";
     }
 }

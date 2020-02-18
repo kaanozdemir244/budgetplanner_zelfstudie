@@ -76,10 +76,4 @@ public class BudgetPlannerFeeder {
 		data.add(buffer.toString());
 	}
 
-
-	public void feedRandomData() {
-
-		// ...
-
-	}
 }

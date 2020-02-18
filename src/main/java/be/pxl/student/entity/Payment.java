@@ -47,4 +47,14 @@ public class Payment {
     public void setDetail(String detail) {
         this.detail = detail;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "date=" + date +
+                ", amount=" + amount +
+                ", currency='" + currency + '\'' +
+                ", detail='" + detail + '\'' +
+                '}';
+    }
 }
