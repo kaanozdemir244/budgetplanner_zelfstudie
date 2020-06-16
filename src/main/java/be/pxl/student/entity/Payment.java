@@ -1,26 +1,44 @@
 package be.pxl.student.entity;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
+@Entity
+@NamedQuery(name = "payment.getAll", query = "SELECT p FROM Payment as p")
+@Table(name = "payments")
 public class Payment {
 
-    private Date date;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @ManyToOne
+    private Account counterAccount;
+    @ManyToOne
+    private Account account;
+    @ManyToOne
+    private Label label;
+    private LocalDateTime date;
     private float amount;
     private String currency;
     private String detail;
 
-    public Payment(Date date, float amount, String currency, String detail) {
+    public Payment() {
+
+    }
+
+    public Payment(LocalDateTime date, float amount, String currency, String detail) {
         this.date = date;
         this.amount = amount;
         this.currency = currency;
         this.detail = detail;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -48,6 +66,26 @@ public class Payment {
         this.detail = detail;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public Account getCounterAccount() {
+        return counterAccount;
+    }
+
+    public void setCounterAccount(Account counterAccount) {
+        this.counterAccount = counterAccount;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -56,5 +94,17 @@ public class Payment {
                 ", currency='" + currency + '\'' +
                 ", detail='" + detail + '\'' +
                 '}';
+    }
+
+    public Label getLabel() {
+        return label;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
